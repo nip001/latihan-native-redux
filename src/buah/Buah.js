@@ -13,10 +13,10 @@ const Buah = () => {
     const dispacth = useDispatch()
 
 
-    useEffect(() => {
-        console.log("data orang : "+JSON.stringify(globalStateOrang))
-        console.log("data buah : "+JSON.stringify(globalStateBuah))
-    })
+    // useEffect(() => {
+    //     console.log("data orang : "+JSON.stringify(globalStateOrang))
+    //     console.log("data buah : "+JSON.stringify(globalStateBuah))
+    // })
 
     const sendData = (tipe) => {
         if (tipe === "buah"){
@@ -41,7 +41,7 @@ const Buah = () => {
               <Tombol action={()=>sendData("buah")} title="mantap"/>
             </View>
             <View>
-                <Text>Orang</Text>
+                <Text style={styles.text}>Orang</Text>
                 <Input placeholder="Masukan Nama" value={globalStateOrang.form.nama} onChangeText={(value)=>onInputChange(value,'nama',"SET_ORANG")} />
                 <Input placeholder="Masukan Alamat" value={globalStateOrang.form.alamat} onChangeText={(value)=>onInputChange(value,'alamat',"SET_ORANG")} />
                 <Input placeholder="Masukan Status" value={globalStateOrang.form.status} onChangeText={(value)=>onInputChange(value,'status',"SET_ORANG")} />
