@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import { Text,  TouchableOpacity, StyleSheet } from 'react-native';
+import React from 'react'
+import { Text,  TouchableOpacity, StyleSheet} from 'react-native';
 
-const Button = ({title,action}) =>{
+const Tombol = ({title,action}) =>{
     return (
+      // <Button title={title} color="#f194ff"></Button>
         <TouchableOpacity onPress={action} style={styles.wrapper}>
             <Text style={styles.textwrapper}>{title}</Text>
         </TouchableOpacity>
@@ -22,4 +23,4 @@ const styles = StyleSheet.create({
   })
   
 
-export default Button;
+export default Tombol;

@@ -8,6 +8,14 @@ const initialStateBuah ={
     },
 }
 
+const initialStateOrang ={
+    form:{
+        nama:'',
+        status:'',
+        alamat:''
+    },
+}
+
 const reducerBuah = (state = initialStateBuah,action) => {
     if(action.type === "SET_FORM"){
         return{
@@ -21,8 +29,22 @@ const reducerBuah = (state = initialStateBuah,action) => {
     return state
 }
 
+const reducerOrang = (state = initialStateOrang,action) =>{
+    if(action.type === "SET_ORANG"){
+        return{
+            ...state,
+            form:{
+                ...state.form,
+                [action.inputType]:action.inputValue,
+            }
+        }
+    }
+    return state
+}
+
 const reducer = combineReducers({
-    reducerBuah
+    reducerBuah,
+    reducerOrang
 })
 
 export default reducer
