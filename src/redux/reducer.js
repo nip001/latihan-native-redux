@@ -10,9 +10,8 @@ const initialStateBuah ={
 
 const initialStateOrang ={
     form:{
-        nama:'',
-        status:'',
-        alamat:''
+        title:'',
+        body:''
     },
 }
 
