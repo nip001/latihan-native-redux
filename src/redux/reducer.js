@@ -8,6 +8,13 @@ const initialStateBuah ={
     },
 }
 
+const initialStateVerifBuah ={
+    form:{
+        warna:'merah',
+        jenis:'bulet'
+    },
+}
+
 const initialStateOrang ={
     form:{
         title:'',
@@ -17,6 +24,19 @@ const initialStateOrang ={
 
 const reducerBuah = (state = initialStateBuah,action) => {
     if(action.type === "SET_FORM"){
+        return{
+            ...state,
+            form:{
+                ...state.form,
+                [action.inputType]:action.inputValue,
+            }
+        }
+    }
+    return state
+}
+
+const reducerVerifBuah = (state = initialStateVerifBuah,action) => {
+    if(action.type === "VALIDASI_BUAH"){
         return{
             ...state,
             form:{
@@ -43,6 +63,7 @@ const reducerOrang = (state = initialStateOrang,action) =>{
 
 const reducer = combineReducers({
     reducerBuah,
+    reducerVerifBuah,
     reducerOrang
 })
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import Tombol from '../component/Button'
 import Input from '../component/Input'
@@ -12,15 +12,18 @@ const Buah = () => {
     const globalStateBuah= useSelector((state) => state.reducerBuah)
     // Untuk Orang
     const globalStateOrang = useSelector((state) => state.reducerOrang)
+    // Untuk VerifBuah
+    const globalStateVerifBuah= useSelector((state) => state.reducerVerifBuah)
 
     const dispacth = useDispatch()
 
 
-    useEffect(() => {
-      axiosGet()
-        // console.log("data orang : "+JSON.stringify(globalStateOrang))
-        // console.log("data buah : "+JSON.stringify(globalStateBuah))
-    })
+    // useEffect(() => {
+    //   console.log(globalStateVerifBuah)
+    //   // axiosGet()
+    //     // console.log("data orang : "+JSON.stringify(globalStateOrang))
+    //     // console.log("data buah : "+JSON.stringify(globalStateBuah))
+    // })
 
     
 
@@ -35,7 +38,15 @@ const Buah = () => {
         });
   }
 
-    const sendData = (tipe) => {
+  const login = (warna,jenis)  => {
+      if(warna === globalStateBuah.form.warna && jenis === globalStateBuah.form.jenis){
+        Alert.alert("Buah Valid")
+      } else {
+        Alert.alert("nggak valid")
+      }
+  }  
+
+  const sendData = (tipe) => {
         if (tipe === "buah"){
             console.log(JSON.stringify(globalStateBuah.form))
         } else {
@@ -62,7 +73,20 @@ const Buah = () => {
     
     return (
         <ScrollView>
-          {user.map((user, i) =>{
+          <View>
+              <Text style={styles.text}>Buah</Text>
+              <Input placeholder="Masukan Warna" value={globalStateBuah.form.warna} onChangeText={(value)=>onInputChange(value,'warna',"SET_FORM")}/>
+              <Input placeholder="Masukan Jenis" value={globalStateBuah.form.jenis} onChangeText={(value)=>onInputChange(value,'jenis',"SET_FORM")}/>
+              <Input placeholder="Masukan Harga" value={globalStateBuah.form.harga} onChangeText={(value)=>onInputChange(value,'harga',"SET_FORM")}/>
+              <Tombol action={()=>sendData("buah")} title="mantap"/>
+          </View>
+          <View>
+              <Text style={styles.text}>Verifikasi Buah</Text>
+              <Input placeholder="Masukan Jenis" value={globalStateVerifBuah.form.jenis} onChangeText={(value)=>onInputChange(value,'jenis',"VALIDASI_BUAH")}/>
+              <Input placeholder="Masukan Warna" value={globalStateVerifBuah.form.warna} onChangeText={(value)=>onInputChange(value,'warna',"VALIDASI_BUAH")}/>
+              <Tombol action={()=>login(globalStateVerifBuah.form.warna,globalStateVerifBuah.form.jenis)} title="Verif"/>
+          </View>
+          {/* {user.map((user, i) =>{
             return (
             <CardView
                 cardElevation={2}
@@ -90,7 +114,7 @@ const Buah = () => {
             </CardView>
 
             )
-          })}
+          })} */}
           
             {/* <View>
               <Text style={styles.text}>Buah</Text>
