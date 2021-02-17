@@ -5,8 +5,9 @@ import Tombol from '../component/Button'
 import Input from '../component/Input'
 import axios from 'axios';
 import CardView from 'react-native-cardview'
+import { NavigationContainer } from '@react-navigation/native'
 
-const Buah = () => {
+const Buah = ({navigation}) => {
   const [user, setUser] = useState([])
     // Untuk Buah
     const globalStateBuah= useSelector((state) => state.reducerBuah)
@@ -41,10 +42,12 @@ const Buah = () => {
   const login = (warna,jenis)  => {
       if(warna === globalStateBuah.form.warna && jenis === globalStateBuah.form.jenis){
         Alert.alert("Buah Valid")
+         navigation.navigate('Dashboards')
       } else {
         Alert.alert("nggak valid")
       }
   }  
+
 
   const sendData = (tipe) => {
         if (tipe === "buah"){
@@ -75,8 +78,8 @@ const Buah = () => {
         <ScrollView>
           <View>
               <Text style={styles.text}>Buah</Text>
-              <Input placeholder="Masukan Warna" value={globalStateBuah.form.warna} onChangeText={(value)=>onInputChange(value,'warna',"SET_FORM")}/>
               <Input placeholder="Masukan Jenis" value={globalStateBuah.form.jenis} onChangeText={(value)=>onInputChange(value,'jenis',"SET_FORM")}/>
+              <Input placeholder="Masukan Warna" value={globalStateBuah.form.warna} onChangeText={(value)=>onInputChange(value,'warna',"SET_FORM")}/>
               <Input placeholder="Masukan Harga" value={globalStateBuah.form.harga} onChangeText={(value)=>onInputChange(value,'harga',"SET_FORM")}/>
               <Tombol action={()=>sendData("buah")} title="mantap"/>
           </View>
